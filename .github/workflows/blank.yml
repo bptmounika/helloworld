@@ -25,3 +25,9 @@ jobs:
       - name: Build
         run: |
          npm run build-prod
+      - name: upload aritifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: |
+            dist
