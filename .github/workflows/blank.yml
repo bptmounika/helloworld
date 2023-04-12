@@ -61,8 +61,8 @@ jobs:
         run: |
          pwd
          ls 
-         cd ..
-         tar cvzf dist.tar.gz dist1    
+       #cd ..
+        # tar cvzf dist.tar.gz dist1    
       - name: zip folder
         uses: montudor/action-zip@v1
         with:
