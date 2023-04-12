@@ -63,4 +63,4 @@ jobs:
          # tar -czf dist.tar.gz dist1         
       - name: upload file
         run: |
-         jf rt upload  dist1 npm-local
+         jf rt upload  README.md npm-local
