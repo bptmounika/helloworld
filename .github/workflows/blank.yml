@@ -22,10 +22,10 @@ jobs:
         run: npm install
 #       - name: Lint
 #         run: npm run lint 
-      - name: Create a temporary artifact dist folder
-        run: |
-         mkdir dist1
-         cd  dist1
+#       - name: Create a temporary artifact dist folder
+#         run: |
+#          mkdir dist1
+#          cd  dist1
 
       - name: Build
         run: |
