@@ -25,6 +25,8 @@ jobs:
       - name: Create a temporary artifact dist folder
         run: |
          mkdir dist1
+         sudo apt update
+         sudo apt install tar gzip build-essential
          cd  dist1
 
       - name: Build
@@ -63,4 +65,4 @@ jobs:
          # tar -czf dist.tar.gz dist1         
       - name: upload file
         run: |
-         jf rt upload  README.md npm-local
+         jf rt upload  dist1 npm-local
