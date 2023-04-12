@@ -44,6 +44,12 @@ jobs:
       - name: ping jfrog server
         run: |
          jf rt ping
+      - name: validate input
+        run: |
+         pwd
+         ls 
+         cd dist1
+
  
       - name: download
         uses: actions/download-artifact@v3
@@ -54,7 +60,7 @@ jobs:
          pwd
          ls 
          cd ..
-         tar -czf dist.tar.gz dist1         
+         # tar -czf dist.tar.gz dist1         
       - name: upload file
         run: |
          jf rt upload  dist1 npm-local
