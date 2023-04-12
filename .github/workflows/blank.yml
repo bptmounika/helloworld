@@ -39,7 +39,11 @@ jobs:
       - name: ping jfrog server
         run: |
          jf rt ping
-         
+ 
+      - name: download
+        uses: actions/download-artifact@v3
+        with:
+          name: dist       
       - name: upload file
         run: |
-         jf rt upload  "dist.zip" npm-local
+         jf rt upload  dist npm-local
