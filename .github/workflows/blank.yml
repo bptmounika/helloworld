@@ -50,9 +50,9 @@ jobs:
         with:
           name: dist
       - name: validate output
-        run: |
+        run:  |
          pwd
          ls         
-      - name: upload file
-        run: |
-         jf rt upload  dist1 npm-local
+#       - name: upload file
+#         run: |
+#          jf rt upload  dist1 npm-local
