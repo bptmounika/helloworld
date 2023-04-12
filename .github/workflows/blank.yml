@@ -62,7 +62,7 @@ jobs:
          pwd
          ls 
          cd ..
-         tar -czf dist.tar.gz dist1         
+         tar cvzf dist.tar.gz dist1         
       - name: upload file
         run: |
          jf rt upload  dist.tar.gz npm-local
