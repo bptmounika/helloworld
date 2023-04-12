@@ -22,10 +22,10 @@ jobs:
         run: npm install
 #       - name: Lint
 #         run: npm run lint 
-#       - name: Create a temporary artifact dist folder
-#         run: |
-#          mkdir dist1
-#          cd  dist1
+      # - name: Create a temporary artifact dist folder
+        # run: |
+         # mkdir dist1
+         # cd  dist1
 
       - name: Build
         run: |
@@ -50,7 +50,9 @@ jobs:
         with:
           name: dist
       - name: validate output
-        run: ls         
+        run: |
+         pwd
+         ls         
       - name: upload file
         run: |
          jf rt upload  dist1 npm-local
