@@ -39,3 +39,15 @@ jobs:
       - name: ping jfrog server
         run: |
          jf rt ping
+         
+       - name: Publish
+         run: jf npm publish
+         
+       - name: Publish Build info With JFrog CLI
+         run: |
+          # Collect environment variables for the build
+          jf rt build-collect-env
+          # Collect VCS details from git and add them to the build
+          jf rt build-add-git
+          # Publish build info
+          jf rt build-publish
