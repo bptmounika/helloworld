@@ -48,7 +48,9 @@ jobs:
       - name: download
         uses: actions/download-artifact@v3
         with:
-          name: dist       
+          name: dist
+      - name: validate output
+        run: ls         
       - name: upload file
         run: |
          jf rt upload  dist1 npm-local
