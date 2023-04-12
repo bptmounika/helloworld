@@ -68,4 +68,4 @@ jobs:
           args: zip release.zip ./dist -r        
       - name: upload file to artifactory
         run: |
-         jf rt upload  release.zip npm-local
+         jf rt upload  dist.zip npm-local
