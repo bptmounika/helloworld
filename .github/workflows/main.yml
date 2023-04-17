@@ -31,9 +31,9 @@ jobs:
           sudo apt update
           sudo apt install tar gzip build-essential
           cd  dist1
-#       - name: Code Build
-#         run: |
-#           npm run build-prod
+      - name: Code Build
+        run: |
+          npm run build-prod
       - name: upload all aritifacts
         uses: actions/upload-artifact@v3
         with:
@@ -62,5 +62,5 @@ jobs:
         with:
           aws_key_id: ${{secrets.AWS_KEY_ID}}
           aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          aws_bucket: microfrontenddata/API/build
+          aws_bucket: microfrontenddata/API/app1data
           source_dir: ./dist
