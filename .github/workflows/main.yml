@@ -54,15 +54,14 @@ jobs:
         uses: montudor/action-zip@v1
         with:
           args: zip dist.zip ./dist -r
-      - name: upload file to artifactory
-        run: >
-          jf rt upload  dist.zip
-          https://altrimetrik.jfrog.io/artifactory/Takeda-app-1/version-1-1-1
+#       - name: upload file to artifactory
+#         run: >
+#           jf rt upload  dist.zip ./dist
       - name: Upload to S3
         uses: shallwefootball/s3-upload-action@master
         id: S3
         with:
           aws_key_id: ${{secrets.AWS_KEY_ID}}
           aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          aws_bucket: actiontest-s3
-          source_dir: /Angular-App/App1/build1/
+          aws_bucket: https://s3.console.aws.amazon.com/s3/buckets/microfrontenddata?region=us-east-2&prefix=API/build/&showversions=false
+          source_dir: ./dist
