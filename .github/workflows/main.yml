@@ -68,4 +68,4 @@ jobs:
           args: zip dist.zip ./dist -r        
       - name: upload file to artifactory
         run: |
-         jf rt upload  dist.zip https://altrimetrik.jfrog.io/artifactory/Takeda-app-1/version-1-1-1
+         jf rt upload  dist.zip Angular-App/
