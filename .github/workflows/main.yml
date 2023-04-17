@@ -63,5 +63,5 @@ jobs:
         with:
           aws_key_id: ${{secrets.AWS_KEY_ID}}
           aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          aws_bucket: https://s3.console.aws.amazon.com/s3/buckets/microfrontenddata?region=us-east-2&prefix=API/build/&showversions=false
+          aws_bucket: microfrontenddata
           source_dir: ./dist
