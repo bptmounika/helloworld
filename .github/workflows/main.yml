@@ -31,7 +31,7 @@ jobs:
           cd  dist1
       - name: Code Build
         run: |
-          npm run build
+          npm run build --prod
       - name: upload all aritifacts
         uses: actions/upload-artifact@v3
         with:
