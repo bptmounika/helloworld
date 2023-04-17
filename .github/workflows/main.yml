@@ -68,4 +68,4 @@ jobs:
           args: zip dist.zip ./dist -r        
       - name: upload file to artifactory
         run: |
-         jf rt upload  dist.zip Angular-App/
+         jf rt upload  dist.zip /Angular-App/build1/
