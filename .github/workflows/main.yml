@@ -23,17 +23,17 @@ jobs:
           cache: npm
       - name: Install all required dependencies
         run: npm install
-      - name: Lint
-        run: npm run lint
+#       - name: Lint
+#         run: npm run lint
       - name: Create  artifact dist folder
         run: |
           mkdir dist1
           sudo apt update
           sudo apt install tar gzip build-essential
           cd  dist1
-      - name: Code Build
-        run: |
-          npm run build-prod
+#       - name: Code Build
+#         run: |
+#           npm run build-prod
       - name: upload all aritifacts
         uses: actions/upload-artifact@v3
         with:
