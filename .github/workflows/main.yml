@@ -4,7 +4,10 @@ on:
     branches:
       - main
   pull_request:
-    types: [opened, synchronize, reopened]
+    types:
+      - opened
+      - synchronize
+      - reopened
 jobs:
   sonarcloud:
     name: Jfrog github
@@ -12,60 +15,54 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0
       - name: Set up node.js
         uses: actions/setup-node@v3.3.0
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: "18"
+          cache: npm
       - name: Install all required dependencies
         run: npm install
-#       - name: Lint
-#         run: npm run lint 
       - name: Create  artifact dist folder
         run: |
-         mkdir dist1
-         sudo apt update
-         sudo apt install tar gzip build-essential
-         cd  dist1
-
+          mkdir dist1
+          sudo apt update
+          sudo apt install tar gzip build-essential
+          cd  dist1
       - name: Code Build
         run: |
-         npm run build-prod
+          npm run build
       - name: upload all aritifacts
         uses: actions/upload-artifact@v3
         with:
           name: dist
           path: ./dist
-      - name: Setup JFrog CLI for integration
-        uses: jfrog/setup-jfrog-cli@v3
-        env:  
-          JF_URL: ${{ secrets.JF_URL }}
-          JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
-      - name: validate connectivity with jfrog server
-        run: |
-         jf rt ping
       - name: validate all input
         run: |
-         pwd
-         ls 
-         cd dist1
-
- 
+          pwd
+          ls 
+          cd dist1
       - name: download artifact
         uses: actions/download-artifact@v3
         with:
           name: dist
       - name: validate output
         run: |
-         pwd
-         ls 
-       #cd ..
-        # tar cvzf dist.tar.gz dist1    
+          pwd
+          ls 
       - name: zip folder
         uses: montudor/action-zip@v1
         with:
-          args: zip dist.zip ./dist -r        
+          args: zip dist.zip ./dist -r
       - name: upload file to artifactory
-        run: |
-         jf rt upload  dist.zip /Angular-App/App1/build1/
+        run: >
+          jf rt upload  dist.zip
+          https://altrimetrik.jfrog.io/artifactory/Takeda-app-1/version-1-1-1
+      - name: Upload to S3
+        uses: shallwefootball/s3-upload-action@master
+        id: S3
+        with:
+          aws_key_id: ${{secrets.AWS_KEY_ID}}
+          aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: actiontest-s3
+          source_dir: /Angular-App/App1/build1/
