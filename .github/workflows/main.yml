@@ -10,7 +10,7 @@ on:
       - reopened
 jobs:
   sonarcloud:
-    name: Aws s3 github intigration
+    name: Aws s3 bucket github intigration
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
