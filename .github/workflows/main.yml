@@ -34,6 +34,7 @@ jobs:
       - name: Code Build
         run: |
           npm run build-prod
+          echo "${BUILD_NUMBER}"
           #echo ${{ github.run_number }}
           #echo ${{ format('V-1.1.{0}', github.run_number) }} 
           echo ${{ format('{{V {0} {1} {2}}}', '1.', '1.', github.run_number) }}-${{ github.run_number }}
