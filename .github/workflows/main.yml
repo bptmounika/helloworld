@@ -35,16 +35,19 @@ jobs:
 #       - name: Build book
 #         env:
 #            VERSION: 0.1.${{ github.run_number }}
-      - name: Code Build
+#       - name: Code Build
+#         run: |
+#           npm run build-prod
+#           echo ${{ format('V-1.1.{0}', github.run_number) }}
+      - name: Output Run Number
+        id: buildno
         run: |
-          npm run build-prod
-          #echo ${{ format('V-1.1.{0}', github.run_number) }}
-          echo  ${{format('V-1.1.{0} ', github.run_number)}}
-          #echo ${{ format('{{V {0} {1} {2}}}', '1.', '1.', github.run_number) }}-${{ github.run_number }}
-         # echo "${BUILD_NUMBER}"
-         # echo ${{ github.run_number }}
-         # echo  ${{ format('V-1.1.{0} ', github.run_number)}}-${{ github.run_number }}
-        # echo ${{ format('{{V {0} {1} {2}!}}', '0.', '0.', github.run_number) }} >> $build_no
+         npm run build-prod
+         echo  "build = ${{ format('V-1.1.{0} ', github.run_number)}} "  > $GITHUB_ENV
+         
+      - name: Use the value
+        id: step_two
+        run: echo "${{ env.build }}" 
 #       - name: Output Run Number
 #         run: |
 #          echo ${{ github.run_number }}
