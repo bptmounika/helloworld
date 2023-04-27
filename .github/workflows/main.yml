@@ -56,6 +56,7 @@ jobs:
         run: |
           mkdir insight-center/${{ env.build }}
           ls
+          pwd
       - name: upload all aritifacts
         uses: actions/upload-artifact@v3
         with:
@@ -74,6 +75,15 @@ jobs:
         run: |
           pwd
           ls 
+      - name: tar folder
+        uses: nxtlvlsoftware/tar-ops-action@v1
+        with:
+          operation: compress
+          files: dist
+          outPath: ./dist.tgz
+      - name: upload file to artifactory
+        run: |
+          jf rt upload  dist.tgz /insight-center-components-generic-local/build1/
 #       - name: zip folder
 #         uses: montudor/action-zip@v1
 #         with:
