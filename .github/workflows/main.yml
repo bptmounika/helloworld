@@ -31,17 +31,18 @@ jobs:
           sudo apt update
           sudo apt install tar gzip build-essential
           cd  dist1
-      - uses: nelonoel/branch-name@v1.0.1
-      - name: Build book
-        env:
-           VERSION: 0.1.${{ github.run_number }}
-      #- name: Code Build
+#       - uses: nelonoel/branch-name@v1.0.1
+#       - name: Build book
+#         env:
+#            VERSION: 0.1.${{ github.run_number }}
+      - name: Code Build
         run: |
           npm run build-prod
-          echo "${BUILD_NUMBER}"
+          #echo "${BUILD_NUMBER}"
           #echo ${{ github.run_number }}
           #echo ${{ format('V-1.1.{0}', github.run_number) }} 
           #echo ${{ format('{{V {0} {1} {2}}}', '1.', '1.', github.run_number) }}-${{ github.run_number }}
+          echo  ${{ format('V-1.1.{0} ', github.run_number)}}-${{ github.run_number }}
           
          # echo ${{ format('{{V {0} {1} {2}!}}', '0.', '0.', github.run_number) }} >> $build_no
 #       - name: Output Run Number
