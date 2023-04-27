@@ -34,33 +34,39 @@ jobs:
       - name: Code Build
         run: |
           npm run build-prod
-      - name: upload all aritifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist
-          path: ./dist
-      - name: validate all input
-        run: |
-          pwd
-          ls 
-          cd dist1
-      - name: download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: dist
-      - name: validate output
-        run: |
-          pwd
-          ls 
-      - name: zip folder
-        uses: montudor/action-zip@v1
-        with:
-          args: zip dist.zip ./dist -r
-      - name: Upload to S3
-        uses: shallwefootball/s3-upload-action@master
-        id: S3
-        with:
-          aws_key_id: ${{secrets.AWS_KEY_ID}}
-          aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          aws_bucket: microfrontenddata/API/app1data
-          source_dir: ./dist
+          echo ${{ github.run_number }}
+          echo ${{ format('{{V {0} {1} {2}!}}', '1.', '1.', github.run_number) }}
+#       - name: Output Run Number
+#         run: |
+#          echo ${{ github.run_number }}
+#          echo ${{ format('{{V {0} {1} {2}!}}', '1.', '1.', github.run_number) }}
+#       - name: upload all aritifacts
+#         uses: actions/upload-artifact@v3
+#         with:
+#           name: dist
+#           path: ./dist
+#       - name: validate all input
+#         run: |
+#           pwd
+#           ls 
+#           cd dist1
+#       - name: download artifact
+#         uses: actions/download-artifact@v3
+#         with:
+#           name: dist
+#       - name: validate output
+#         run: |
+#           pwd
+#           ls 
+#       - name: zip folder
+#         uses: montudor/action-zip@v1
+#         with:
+#           args: zip dist.zip ./dist -r
+#       - name: Upload to S3
+#         uses: shallwefootball/s3-upload-action@master
+#         id: S3
+#         with:
+#           aws_key_id: ${{secrets.AWS_KEY_ID}}
+#           aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+#           aws_bucket: microfrontenddata/API/app1data
+#           source_dir: ./dist
