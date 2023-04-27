@@ -1,0 +1,29 @@
+---
+name: My workflow
+on:
+  - pull_request
+jobs:
+  build_id:
+    steps:
+      - name: Set build id
+        id: build_id
+        run: echo "::set-output name=id::$(date +%s)"
+  tests:
+    needs: build_id
+    name: Cypress run
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        containers:
+          - 1
+          - 2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Cypress run
+        uses: cypress-io/github-action@v1
+        with:
+          record: true
+          parallel: true
+#         env:
+#           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
