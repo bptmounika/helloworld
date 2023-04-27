@@ -1,4 +1,3 @@
----
 name: My workflow
 on:
   - pull_request
